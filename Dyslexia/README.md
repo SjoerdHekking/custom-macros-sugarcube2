@@ -1,6 +1,6 @@
 # Dyslexia
 
-Shuffle letters inside words to simulate dyslexia
+Shuffle letters inside words to simulate dyslexia.
 
 ## Installation
 
@@ -14,7 +14,7 @@ The following example uses the default values of dyslexia.
 
 ```html
 <<dyslexia>>
-    Any text you input here will get it's letters randomly shuffled within the words of the text. Numbers within the text, such as 4 or 20 will be ignored.
+    given text will get it's letters randomly shuffled within the words. Numbers within the text, such as 4 or 20 will be ignored.
 <</dyslexia>>
 ```
 
