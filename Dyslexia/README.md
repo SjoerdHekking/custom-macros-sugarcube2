@@ -22,7 +22,7 @@ The following example uses the default values of dyslexia.
 
 ## Usage - Dyslexia arguments
 
-'Dyslexia' has three arguments which allow things to be customized for your desire.
+1. 'Dyslexia' has three arguments which allow things to be customized for your desire.
     - [Chance of shuffle](#Chance), default is 10%. (Argument1)
     - [Selecting word size](#Word-size), default is 3 letters. (Argument2)
     - [Delay of interval](#Delay), default is 50 milliseconds. (Argument3)
@@ -53,7 +53,7 @@ The following example uses the default values of dyslexia.
 
 - `Argument1`: *(integer)* chance.
 
-'Dyslexia' has a default chance set to `10%`.
+1. 'Dyslexia' has a default chance set to `10%`.
     - Only integers are accepted.
     - Minimum will be `1%` or an error will be thrown.
     - Maximum will be `100%` or an error will be thrown.
@@ -62,7 +62,7 @@ The following example uses the default values of dyslexia.
 
 - `Argument2`: *(integer)* size.
 
-'Dyslexia' has a default word size set to `3`.
+1. 'Dyslexia' has a default word size set to `3`.
     - Only integers are accepted.
     - Minimum will be `2` or an error will be thrown.
 
@@ -70,7 +70,7 @@ The following example uses the default values of dyslexia.
 
 - `Argument3`: *(integer)* delay.
 
-'Dyslexia' has a default delay of `50ms`, to prevent your browser from crashing.
+1. 'Dyslexia' has a default delay of `50ms`, to prevent your browser from crashing.
     - Only integers are accepted.
     - Minimum will be `50ms` or an error will be thrown.
 
