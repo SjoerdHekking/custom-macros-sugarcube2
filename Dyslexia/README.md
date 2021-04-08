@@ -17,7 +17,7 @@ The following example uses the default values of dyslexia.
     given text will get it's letters randomly shuffled within the words. Numbers within the text, such as 4 or 20 will be ignored.
 <</dyslexia>>
 ```
-
+![Dyslexia example](./Resources/Gif/example1.gif)
 ---
 
 ## Usage - Dyslexia arguments
@@ -44,7 +44,7 @@ The following example uses the default values of dyslexia.
     The delay is 100 milliseconds or 0.1 second.
 <</dyslexia>>
 ```
-
+![Dyslexia example](./Resources/Gif/example2.gif)
 ---
 
 ## Chance
