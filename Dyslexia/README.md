@@ -39,7 +39,9 @@ The following example uses the default values of dyslexia.
 
 ```html
 <<dyslexia 20 4 100>>
-    This example will have 20% chance to shuffle words, the words needs to be of a minimum length of 4 letters and the delay is 100 milliseconds or 0.1 second.
+    This example will have 20% chance to shuffle words.
+    The words needs to be of a minimum length of 4 letters.
+    The delay is 100 milliseconds or 0.1 second.
 <</dyslexia>>
 ```
 
