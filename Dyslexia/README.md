@@ -30,9 +30,9 @@ The following example uses the default values of dyslexia.
 **Argument placement:**
 
 ```html
-    <<dyslexia Argument1 Argument2 Argument3>>
-        any text given.
-    <</dyslexia>>
+<<dyslexia Argument1 Argument2 Argument3>>
+    any text given.
+<</dyslexia>>
 ```
 
 **Example:**
