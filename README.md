@@ -14,4 +14,5 @@ Download this repository and pick which macros you need. Each macro comes with a
         - Word size, the minimum amount of letters a word needs to be changed
         - Chance, the minimum chance a word has to have letters switched
         - Delay, the delay per interval for words to change in milliseconds
+        
 ![Dyslexia example](./Resources/Gif/example1.gif)
