@@ -49,8 +49,6 @@ The following example uses the default values of dyslexia.
 
 ## Chance
 
-**Arguments:**
-
 - `Argument1`: *(integer)* chance.
 
 1. 'Dyslexia' has a default chance set to `10%`.
