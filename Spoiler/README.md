@@ -1,4 +1,4 @@
-# Dyslexia
+# Spoiler
 
 Hide words behind a blur with a hover over effect, reveal them by clicking words.
 

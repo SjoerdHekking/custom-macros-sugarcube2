@@ -2,6 +2,7 @@ Macro.add('spoiler', {
 	tags: null,
 	handler: function () {
 		// Spoiler macro by SjoerdHekking
+        // with the help of Cyrus Firheir
 		'use strict';
 
 		var errorArray = []; // Empty error array to address multiple problems
