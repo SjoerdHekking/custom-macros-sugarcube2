@@ -73,3 +73,18 @@ The following example uses the default values of dyslexia.
     - Minimum will be `50ms` or an error will be thrown.
 
 **NOTE:** Time is set in milliseconds and not in seconds.
+
+## Styling
+
+1. 'Dyslexia' uses a `<span></span>` as output.
+    - `<span class="macro-mess-up-words" />`: *(class)*.
+
+**Example:**
+
+```css
+.macro-mess-up-words {
+    font-size: 20px;
+    color: red;
+}
+```
+![Dyslexia styling example](../Resources/Gif/example3.gif)
