@@ -87,7 +87,7 @@ Or you could hide a <<spoiler 6 1 "Dare to press me">>secret<</spoiler>> word.
 ## Styling
 
 1. 'Spoiler' uses a `<span></span>` as output.
-    - `<span class="macro-spoiler" />`: *(class)*.
+    - `<span class="macro-spoiler"></span>`: *(class)*.
 
 **Example:**
 

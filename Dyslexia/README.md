@@ -77,7 +77,7 @@ The following example uses the default values of dyslexia.
 ## Styling
 
 1. 'Dyslexia' uses a `<span></span>` as output.
-    - `<span class="macro-mess-up-words" />`: *(class)*.
+    - `<span class="macro-mess-up-words"></span>`: *(class)*.
 
 **Example:**
 
