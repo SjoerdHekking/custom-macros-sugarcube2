@@ -25,3 +25,12 @@ Download this repository and pick which macros you need. Each macro comes with a
         - Hint text, help the player by hinting them to press or show another message you like.
 
 ![Spoiler example](/Resources/Gif/example1a.gif)
+
+2. [Word Wheel](./word%20wheel)
+    - Creates a wheel of words that follows the cursor.
+    - Customizable:
+        - Text, the message to whirl around the cursor.
+        - font size, the size of the text.
+        - circle size, the diameter of the circle which whirls around the cursor.
+
+![Spoiler example](/Resources/Gif/example1b.gif)
