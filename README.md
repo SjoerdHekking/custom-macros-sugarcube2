@@ -26,7 +26,7 @@ Download this repository and pick which macros you need. Each macro comes with a
 
 ![Spoiler example](/Resources/Gif/example1a.gif)
 
-2. [Word Wheel](./WordWheel)
+3. [Word Wheel](./WordWheel)
     - Creates a wheel of words that follows the cursor.
     - Customizable:
         - Text, the message to whirl around the cursor.

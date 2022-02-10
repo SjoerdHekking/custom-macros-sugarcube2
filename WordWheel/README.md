@@ -83,10 +83,25 @@ The following example uses the default values of wordwheel.
 
 ```css
 #outerCircleText {
-    color: red !important;
-    font-style: italic !important;
+    color: red;
+    font-style: italic;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+    cursor: default;
 }
 ```
-**NOTE:** `!important` is a must. Also, don't touch any position property.
+
+As seen above, one needs to change the rules of `#outerCircleText` in order to style the word wheel. In this example the color was changed from red to white and italics were applied.
+
+```css
+#outerCircleText {
+    color: red;
+    font-style: italic;
+}
+```
+
+**NOTE:** Don't touch any position property.
 
 ![wordwheel styling example](../Resources/Gif/example3b.gif)
