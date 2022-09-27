@@ -98,10 +98,11 @@ The following example uses the default values of flash.
 
 ## Progress
 
-- `Argument3`: *(boolean)* progress bar.
+- `Argument3`: *(boolean)* progress bar and whether the notification dissappears on its own. 
 
 1. 'flash' has a default progress set to `true`.
     - Only booleans are accepted.
+    - Setting this to `false` will cause the notification to permanently stay unless click if `interactive = true`.
 
 ## Interactive
 
@@ -109,6 +110,7 @@ The following example uses the default values of flash.
 
 1. 'flash' has a default interaction set to `true`.
     - Only booleans are accepted.
+    - Setting this to `false` will block people from dismissing the notification through clicking.
 
 ## Timeout
 
