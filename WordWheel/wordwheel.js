@@ -73,59 +73,59 @@ setup.circle = {
       setup.circle.xmouse += window.pageXOffset;
       window.removeEventListener("scroll", setup.circle.circleAscroll, false);
     }
-  };
+};
   
-  // MACRO
-  
-  Macro.add("wordwheel", {
-    tags: ["fontSize", "fontsize", "circleSize", "circlesize"],
-    handler: function () {
-        let errorArray = [];
-        if (!window.addEventListener && !window.attachEvent && !document.createElement) {errorArray.push("Unable to either add EvenListener, AttachEvent or createElement")}; 
-        if(this.args.length <= 0)
-            return this.error("First argument cannot be skipped, please insert a string via <<wordwheel \"Text here.\">>.");
-        if(this.args[0] === "")
-            return this.error("First argument cannot be an empty string.");
-        if(this.args[0].length > 31)
-            return this.error("Word wheel doesn't accept more than 50 characters.");
-        
-        setup.circle.msg = this.args[0].split("");
+// MACRO
+
+Macro.add("wordwheel", {
+	tags: ["fontSize", "fontsize", "circleSize", "circlesize"],
+	handler: function () {
+		let errorArray = [];
+		if (!window.addEventListener && !window.attachEvent && !document.createElement) {errorArray.push("Unable to either add EvenListener, AttachEvent or createElement")}; 
+		if(this.args.length <= 0)
+			return this.error("First argument cannot be skipped, please insert a string via <<wordwheel \"Text here.\">>.");
+		if(this.args[0] === "")
+			return this.error("First argument cannot be an empty string.");
+		if(this.args[0].length > 31)
+			return this.error("Word wheel doesn't accept more than 50 characters.");
+		
+		setup.circle.msg = this.args[0].split("");
 
 
-        for (const pay of this.payload) {
-            switch (pay.name.toLowerCase()) {
-            case "fontsize":
-                if (pay.args[0] > 30)
-                    errorArray.push("Font size cannot be bigger than 30.");
-                if (pay.args[0] < 4)
-                    errorArray.push("Font size cannot be negative nor below 4.");
-            
-                setup.circle.size = pay.args[0];
-            break;
-            case "circlesize":
-                if (pay.args[0] > 70)
-                    errorArray.push("Circle size cannot be above 70.");
-                if (pay.args[0] < 20)
-                    errorArray.push("Circle size cannot be below 20");
+		for (const pay of this.payload) {
+			switch (pay.name.toLowerCase()) {
+			case "fontsize":
+				if (pay.args[0] > 30)
+					errorArray.push("Font size cannot be bigger than 30.");
+				if (pay.args[0] < 4)
+					errorArray.push("Font size cannot be negative nor below 4.");
+			
+				setup.circle.size = pay.args[0];
+			break;
+			case "circlesize":
+				if (pay.args[0] > 70)
+					errorArray.push("Circle size cannot be above 70.");
+				if (pay.args[0] < 20)
+					errorArray.push("Circle size cannot be below 20");
 
-                setup.circle.diameter = pay.args[0];
-            break;
-            }
-        }
-  
-        if (errorArray.length > 0)
-            return this.error(errorArray.join("\n"));
+				setup.circle.diameter = pay.args[0];
+			break;
+			}
+		}
 
-        else if (window.addEventListener) {
-            setup.circle.circleInit();
-            document.addEventListener("mouseover", setup.circle.circleMouse, false);
-            document.addEventListener("mousemove", setup.circle.circleMouse, false);
-            if (/Apple/.test(navigator.vendor))
-            window.addEventListener("scroll", setup.circle.circleAscroll, false);
-        }
-        else if (window.attachEvent) {
-            // window.attachEvent("onload", setup.circle.circleInit);
-            document.attachEvent("onmousemove", setup.circle.circleMouse);
-        }
-    }
-  });
+		if (errorArray.length > 0)
+			return this.error(errorArray.join("\n"));
+
+		else if (window.addEventListener) {
+			setup.circle.circleInit();
+			document.addEventListener("mouseover", setup.circle.circleMouse, false);
+			document.addEventListener("mousemove", setup.circle.circleMouse, false);
+			if (/Apple/.test(navigator.vendor))
+			window.addEventListener("scroll", setup.circle.circleAscroll, false);
+		}
+		else if (window.attachEvent) {
+			// window.attachEvent("onload", setup.circle.circleInit);
+			document.attachEvent("onmousemove", setup.circle.circleMouse);
+		}
+	}
+});

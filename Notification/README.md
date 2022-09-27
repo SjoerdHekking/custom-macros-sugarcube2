@@ -1,0 +1,212 @@
+# Flash
+
+Advanced notification system with 13 optional settings. 
+
+## Installation
+
+If using the Twine desktop/web app, copy contents of `flash.js` to the `Story JavaScript` section, and copy contents of `flash.css` to the `Story Stylesheet` section.
+
+If using a compiler like Tweego, drop `flash.js` and `flash.css` to your source folder.
+
+## Example Usage
+
+The following example uses the default values of flash.
+
+```html
+<<flash "You found Maxine!">>
+<</flash>>
+```
+![Flash example](../Resources/Gif/example4.gif)
+---
+
+## Usage - Flash arguments
+
+1. 'Flash' has fourteen (yes 14) arguments which allow things to be customized for your desire. I recommend staying away from 7, and 10 to and including 14, unless you know what you're doing.
+    - [Input text](#Text), There is no default, this must be user provided. (Argument 1)
+    - [Type](#Type), default is `default`, (Argument 2)
+    - [Progress](#Progress), default is `true` (Argument 3)
+    - [Interactive](#Interactive), default is `true`. (Argument 4)
+    - [Timeout](#Timeout), default is `8000`ms. (Argument 5)
+    - [Delay](#Delay), default is `200`ms. (Argument 6)
+    - [Container](#Container), default is `.flash-container`. (Argument 7)
+    - [Theme](#Theme), default is `default`. (Argument 8)
+    - [Layout](#Layout), default is `top-right`. (Argument 9)
+    - [Container Class](#ContainerClass), default is `flash-container`. (Argument 10)
+    - [Flash Class](#FlashClass), default is `flash-message`. (Argument 11)
+    - [Visible Class](#VisibleClass), default is `is-visible`. (Argument 12)
+    - [Progress Class](#ProgressClass), default is `flash-progress`. (Argument 13)
+    - [Hidden Class](#HiddenClass), default is `is-hidden`. (Argument 14)
+
+
+**Argument placement:**
+(You can cherry pick which arguments to use)
+```html
+<<flash Argument1>>
+    <<flashType Argument2>>
+    <<Progress Argument3>>
+    <<Interactive Argument4>>
+    <<Timeout Argument5>>
+    <<Delay Argument6>>
+    <<Container Argument7>>
+    <<Theme Argument8>>
+    <<Layout Argument9>>
+    <<classContainer Argument10>>
+    <<classFlash Argument11>>
+    <<classVisible Argument12>>
+    <<classProgress Argument13>>
+    <<classHidden Argument14>>
+<</flash>>
+```
+
+**Example:**
+
+```html
+<<flash "Ew, a nasty bug has been found">>
+    <<flashType "bug">>
+    <<Timeout 6000>>
+    <<Delay 1000>>
+    <<Theme "dark">>
+<</flash>>
+```
+![flash example](../Resources/Gif/example4a.gif)
+---
+
+## Text
+
+- `Argument1`: *(string)* text.
+
+1. 'Flash' has no default, user must submit a string with text.
+    - Only UTF-8 is accepted.
+    - Must be user supplied.
+
+## Type
+
+- `Argument2`: *(string)* flash type.
+
+1. 'flash' has a default flash type set to `default`.
+    - Only string are accepted.
+    - The following strings are accepted: `succes`, `warning`, `error`, `info`, `bug`, `disabled`, `default`.
+
+## Progress
+
+- `Argument3`: *(boolean)* progress bar.
+
+1. 'flash' has a default progress set to `true`.
+    - Only booleans are accepted.
+
+## Interactive
+
+- `Argument4`: *(boolean)* interaction.
+
+1. 'flash' has a default interaction set to `true`.
+    - Only booleans are accepted.
+
+## Timeout
+
+- `Argument5`: *(integer)* time-out in milliseconds.
+
+1. 'flash' has a default time-out set to `8000`ms or `8`s.
+    - Only integers are accepted.
+    - Minimum will be `500` or an error will be thrown.
+    - Maximum will be `100000` or an error will be thrown.
+
+## Delay
+
+- `Argument6`: *(integer)* delay in milliseconds.
+
+1. 'flash' has a default delay set to `200`ms or `0.2`s.
+    - Only integers are accepted.
+    - Minimum will be `50` or an error will be thrown.
+    - Maximum will be `100000` or an error will be thrown.
+
+## Container
+
+- `Argument7`: *(string)* flash container.
+
+1. 'flash' has a default container set to `.flash-container`.
+    - Only string are accepted.
+
+**NOTE:** The element must exist before the macro is called.
+
+## Theme
+
+- `Argument8`: *(string)* theme.
+
+1. 'flash' has a default theme set to `default`.
+    - Only string are accepted.
+    - The following strings are accepted: `dark`, `default`.
+
+## Layout
+
+- `Argument9`: *(string)* layout.
+
+1. 'flash' has a default layout set to `top-right`.
+    - Only string are accepted.
+    - The following strings are accepted: `top-right`, `middle-right`, `bottom-right`, `middle-bottom`, `bottom-left`, `middle-left`, `top-left`, `middle-top`.
+
+## ContainerClass
+
+- `Argument10`: *(string)* flash container class.
+
+1. 'flash' has a default flash container class set to `flash-container`.
+    - Only string are accepted.
+
+**NOTE:** This breaks ALL existing `css` rules. Thus, the user must supply their own.
+
+## FlashClass
+
+- `Argument11`: *(string)* flash class.
+
+1. 'flash' has a default flash class set to `flash-message`.
+    - Only string are accepted.
+
+**NOTE:** This breaks ALL existing `css` rules. Thus, the user must supply their own.
+
+## VisibleClass
+
+- `Argument12`: *(string)* flash visible class.
+
+1. 'flash' has a default flash visible class set to `is-visible`.
+    - Only string are accepted.
+
+**NOTE:** This breaks ALL existing `css` rules. Thus, the user must supply their own.
+
+## ProgressClass
+
+- `Argument13`: *(string)* flash progress class.
+
+1. 'flash' has a default flash progress class set to `flash-progress`.
+    - Only string are accepted.
+
+**NOTE:** This breaks ALL existing `css` rules. Thus, the user must supply their own.
+
+## HiddenClass
+
+- `Argument14`: *(string)* flash progress hidden class.
+
+1. 'flash' has a default flash progress hidden class set to `is-hidden`.
+    - Only string are accepted.
+
+**NOTE:** This breaks ALL existing `css` rules. Thus, the user must supply their own.
+
+## Styling
+
+1. 'flash' uses a nested `<div></div>` as output.
+    - `<div class="flash-container"></div>`: *(class)*.
+
+**Example:**
+
+```css
+.flash-container {
+    z-index: 1000;
+    max-width: 50%;
+    position: fixed;
+}
+.flash-message {
+    border: double 10px;
+    color: red;
+}
+```
+**NOTE:** It's not recommended to touch anything out of the VARIABLE theme settings.
+
+![flash styling example](../Resources/Gif/example4b.gif)
