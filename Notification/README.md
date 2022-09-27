@@ -36,10 +36,13 @@ The following example uses the default values of flash.
     - [Visible Class](#VisibleClass), default is `is-visible`. (Argument 12)
     - [Progress Class](#ProgressClass), default is `flash-progress`. (Argument 13)
     - [Hidden Class](#HiddenClass), default is `is-hidden`. (Argument 14)
+    - [Styling example](#Styling), an example of styling of the `css` itself, this is not the recommended way of doing this.
 2. 'Flash' has a custom type insertion system, for if the default 7 options aren't enough.
     - [Inserting new type](#TypeInsert), this is completely custom, so no default.
     - [Using new Type](#Type), refer to Argument 2 for usage, because the newly inserted type can be used like the defaults now.
-    - [Important styling](#StylingType), if you want to have custom styling, please copy and edit the `css` found here. 
+    - [Important styling](#StylingType), if you want to have custom styling, please copy and edit the `css` found here. Take a look at the example.
+3. 'Flash' can also be called directly through javascript
+    - [Javascript methods](#Javascript), here you can find a way to fully control and customize everything. **NOT** recommended for authors without knowledge of JavaScript.
 
 
 **Argument placement:**
@@ -205,6 +208,7 @@ The following example uses the default values of flash.
 1. `Story Stylesheet`: *(strings)*'s to make sure your newly added type actually does something we **must** give it custom styling. Please edit 'Wizardry' with your own custom name(s).
 
     - ```css
+      /* Place the css below in your story stylesheet */
       .flash-container .flash-message.flash-wizardry .flash-progress {
           /* Progress bar color */
           background-color: rgba(255, 153, 0, 0.15);
@@ -223,6 +227,7 @@ The following example uses the default values of flash.
       }
       ```
     - ```html
+      /* Place the macro in the passage you want to use it in */
       <<flash "The wizard of SugarCube">>
         <<flashType "wizardry">>
       <</flash>>
@@ -251,3 +256,25 @@ The following example uses the default values of flash.
 **NOTE:** It's not recommended to touch anything out of the VARIABLE theme settings.
 
 ![flash styling example](../Resources/Gif/example4b.gif)
+
+## Javascript
+
+1. This is how to use JavaScript to create flash messages with the default parameters.
+    - ```js
+      window.FlashMessage.default('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', {
+          progress: true,
+          interactive: true,
+          timeout: 8000,
+          appear_delay: 200,
+          container: '.flash-container',
+          theme: 'default',
+          layout: 'top-right',
+          classes: {
+              container: 'flash-container',
+              flash: 'flash-message',
+              visible: 'is-visible',
+              progress: 'flash-progress',
+              progress_hidden: 'is-hidden'
+          }
+      });
+      ```
