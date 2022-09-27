@@ -205,28 +205,28 @@ The following example uses the default values of flash.
 1. `Story Stylesheet`: *(strings)*'s to make sure your newly added type actually does something we **must** give it custom styling. Please edit 'Wizardry' with your own custom name(s).
 
     - ```css
-.flash-container .flash-message.flash-wizardry .flash-progress {
-    /* Progress bar color */
-    background-color: rgba(255, 153, 0, 0.15);
-}
-.flash-container .flash-message.flash-wizardry:before {
-    /* Left line color */
-    background-color: #ffcc00;
-}
-.flash-container .flash-message.flash-wizardry:after {
-    /* Icon color */
-    color: rgba(255, 179, 0, 0.5);
-    /* Icon from tme-fa-icons */
-    content: '\e83a';
-    /* Change this if you want to use font-awesome icons or something else */
-    font-family: "tme-fa-icons";
-}
-```
+      .flash-container .flash-message.flash-wizardry .flash-progress {
+          /* Progress bar color */
+          background-color: rgba(255, 153, 0, 0.15);
+      }
+      .flash-container .flash-message.flash-wizardry:before {
+          /* Left line color */
+          background-color: #ffcc00;
+      }
+      .flash-container .flash-message.flash-wizardry:after {
+          /* Icon color */
+          color: rgba(255, 179, 0, 0.5);
+          /* Icon from tme-fa-icons */
+          content: '\e83a';
+          /* Change this if you want to use font-awesome icons or something else */
+          font-family: "tme-fa-icons";
+      }
+      ```
     - ```html
-<<flash "The wizard of SugarCube">>
-    <<flashType "wizardry">>
-<</flash>>
-```
+      <<flash "The wizard of SugarCube">>
+        <<flashType "wizardry">>
+      <</flash>>
+      ```
 
 ![flash styling example 2](../Resources/Gif/example4d.gif)
 
