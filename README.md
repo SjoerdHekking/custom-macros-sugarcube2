@@ -8,7 +8,15 @@ Download this repository and pick which macros you need. Each macro comes with a
 
 ## Macro sets
 
-1. [Dyslexia](./Dyslexia)  
+1. [Flash](./Notification)
+    - Advanced notification system with 13 optional settings. 
+    - JavaScript method.
+    - Insertion of your own custom notification types.
+    - Highly customizable!
+
+![Flash example](./Resources/Gif/example4a.gif)
+
+2. [Dyslexia](./Dyslexia)  
     - Simulate what dyslexia feels like to players/user.  
     - Customizable:
         - Word size, the minimum amount of letters a word needs to be changed
@@ -17,7 +25,7 @@ Download this repository and pick which macros you need. Each macro comes with a
         
 ![Dyslexia example](./Resources/Gif/example1.gif)
 
-2. [Spoiler](./Spoiler)
+3. [Spoiler](./Spoiler)
     - Hides words behind a blur.
     - Customizable:
         - Initial blur, the amount of blur in pixels.
@@ -26,7 +34,7 @@ Download this repository and pick which macros you need. Each macro comes with a
 
 ![Spoiler example](/Resources/Gif/example1a.gif)
 
-3. [Word Wheel](./WordWheel)
+4. [Word Wheel](./WordWheel)
     - Creates a wheel of words that follows the cursor.
     - Customizable:
         - Text, the message to whirl around the cursor.

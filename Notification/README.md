@@ -8,6 +8,8 @@ If using the Twine desktop/web app, copy contents of `flash.js` to the `Story Ja
 
 If using a compiler like Tweego, drop `flash.js` and `flash.css` to your source folder.
 
+The `.js` and `.css` are also available in a `.min` form, so it takes up less space.
+
 ## Example Usage
 
 The following example uses the default values of flash.
