@@ -260,10 +260,10 @@
 						CONTAINER: ".flash-container",
 						CLASSES: {
 							CONTAINER: "flash-container",
-							VISIBLE: "is-visible",
+							VISIBLE: "flash-is-visible",
 							FLASH: "flash-message",
 							PROGRESS: "flash-progress",
-							PROGRESS_HIDDEN: "is-hidden"
+							PROGRESS_HIDDEN: "flash-is-hidden"
 						}
 					}
 				}
@@ -414,6 +414,8 @@
 			}, {
 				key: "_isInteractive",
 				value: function() {
+                    if (!this.options.interactive)
+                        this.$_element.classList.add("flash-not-interactive");
 					return Boolean(!0 === this.options.interactive)
 				}
 			}, {
@@ -447,7 +449,7 @@
 			}, {
 				key: "_stopProgress",
 				value: function() {
-					this._hasProgress() && this.$_progress && (this.$_progress.classList.add("is-hidden"), window.clearInterval(this._progress_interval), this._progress_interval = null, this._progress_value = 0)
+					this._hasProgress() && this.$_progress && (this.$_progress.classList.add("flash-is-hidden"), window.clearInterval(this._progress_interval), this._progress_interval = null, this._progress_value = 0)
 				}
 			}, {
 				key: "_setTheme",
@@ -528,9 +530,9 @@ Macro.add("flash", {
             classes: {
                 container: 'flash-container',
                 flash: 'flash-message',
-                visible: 'is-visible',
+                visible: 'flash-is-visible',
                 progress: 'flash-progress',
-                progress_hidden: 'is-hidden'
+                progress_hidden: 'flash-is-hidden'
             }
         };
 

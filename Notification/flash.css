@@ -75,6 +75,9 @@
     line-height: 1.4;
     cursor: pointer;
 }
+.flash-container .flash-not-interactive {
+    cursor: default;
+}
 .flash-container .flash-message .flash-progress {
     position: absolute;
     right: 0;
@@ -89,7 +92,7 @@
     -o-transition: opacity .1s;
     transition: opacity .1s;
 }
-.flash-container .flash-message .flash-progress.is-hidden {
+.flash-container .flash-message .flash-progress.flash-is-hidden {
     opacity: 0;
 }
 .flash-container .flash-message .flash-progress.flash-progress-top {
@@ -120,7 +123,7 @@
     vertical-align: middle;
     color: #9e9e9e;
 }
-.flash-container .flash-message.is-visible {
+.flash-container .flash-message.flash-is-visible {
     opacity: 1;
     -webkit-transform: translateX(0);
     -ms-transform: translateX(0);
