@@ -203,8 +203,8 @@ The following example uses the default values of flash.
 ## StylingType
 
 1. `Story Stylesheet`: *(strings)*'s to make sure your newly added type actually does something we **must** give it custom styling. Please edit 'Wizardry' with your own custom name(s).
-    - 
-```css
+
+    - ```css
 .flash-container .flash-message.flash-wizardry .flash-progress {
     /* Progress bar color */
     background-color: rgba(255, 153, 0, 0.15);
@@ -222,8 +222,7 @@ The following example uses the default values of flash.
     font-family: "tme-fa-icons";
 }
 ```
-    -
-```html
+    - ```html
 <<flash "The wizard of SugarCube">>
     <<flashType "wizardry">>
 <</flash>>
