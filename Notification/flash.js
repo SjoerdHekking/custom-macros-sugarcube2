@@ -511,7 +511,7 @@
 Macro.add("flash", {
 	tags: ["progress", "Progress", "interactive", "Interactive", "timeout", "Timeout", "delay", "Delay", "container", "Container", "theme", "Theme", "classContainer", "classcontainer", "classFlash", "classflash", "classVisible", "classvisible", "classProgress", "classprogress", "classHidden", "classhidden", "flashtype", "flashType", "layout", "Layout"],
 	handler: function () {
-        const typeArray = ["succes", "warning", "error", "info", "bug", "disabled", "default"];
+        const typeArray = ["success", "warning", "error", "info", "bug", "disabled", "default"];
         const layoutArray = ["top-right", "middle-right", "bottom-right", "middle-bottom", "bottom-left", "middle-left", "top-left", "middle-top"];
 
 		let errorArray = [];
@@ -546,8 +546,8 @@ Macro.add("flash", {
                 case "flashtype":
                     if (!(typeof pay.args[0] == "string"))
                         errorArray.push("Type must be a string.");
-                    if (!(typeArray.includes(pay.args[0])))
-                        errorArray.push("Type does not include:"+pay.args[0]);
+                    if ((!(typeof window.FlashMessage[pay.args[0]] == "function")) && !(typeArray.includes(pay.args[0])))
+                        errorArray.push("Type does not include: "+pay.args[0]);
                     defaultOptions.type = pay.args[0];
                 break;
                 case "layout":

@@ -22,7 +22,7 @@ The following example uses the default values of flash.
 ## Usage - Flash arguments
 
 1. 'Flash' has fourteen (yes 14) arguments which allow things to be customized for your desire. I recommend staying away from 7, and 10 to and including 14, unless you know what you're doing.
-    - [Input text](#Text), There is no default, this must be user provided. (Argument 1)
+    - [Input text](#Text), there is no default, this must be user provided. (Argument 1)
     - [Type](#Type), default is `default`, (Argument 2)
     - [Progress](#Progress), default is `true` (Argument 3)
     - [Interactive](#Interactive), default is `true`. (Argument 4)
@@ -36,6 +36,10 @@ The following example uses the default values of flash.
     - [Visible Class](#VisibleClass), default is `is-visible`. (Argument 12)
     - [Progress Class](#ProgressClass), default is `flash-progress`. (Argument 13)
     - [Hidden Class](#HiddenClass), default is `is-hidden`. (Argument 14)
+2. 'Flash' has a custom type insertion system, for if the default 7 options aren't enough.
+    - [Inserting new type](#TypeInsert), this is completely custom, so no default.
+    - [Using new Type](#Type), refer to Argument 2 for usage, because the newly inserted type can be used like the defaults now.
+    - [Important styling](#StylingType), if you want to have custom styling, please copy and edit the `css` found here. 
 
 
 **Argument placement:**
@@ -85,7 +89,7 @@ The following example uses the default values of flash.
 
 1. 'flash' has a default flash type set to `default`.
     - Only string are accepted.
-    - The following strings are accepted: `succes`, `warning`, `error`, `info`, `bug`, `disabled`, `default`.
+    - The following strings are accepted: `success`, `warning`, `error`, `info`, `bug`, `disabled`, `default`.
 
 ## Progress
 
@@ -188,6 +192,44 @@ The following example uses the default values of flash.
     - Only string are accepted.
 
 **NOTE:** This breaks ALL existing `css` rules. Thus, the user must supply their own.
+
+## TypeInsert
+
+1. `StoryInit`: *(strings)*'s flash can receive custom types through the use of `StoryInit`. Below is an example of the type 'Wizardry'. Please edit 'Wizardry' with your own custom type(s).
+    - `<<run window.FlashMessage.addCustomVerbs('wizardry');>>` this command must be placed in `StoryInit`.
+    - `window.FlashMessage.addCustomVerbs('wizardry', 'example', 'custom', 'many');` this command accepts comma seperated strings.
+**NOTE:** Please put it in `StoryInit` and not somewhere else.
+
+## StylingType
+
+1. `Story Stylesheet`: *(strings)*'s to make sure your newly added type actually does something we **must** give it custom styling. Please edit 'Wizardry' with your own custom name(s).
+    - 
+```css
+.flash-container .flash-message.flash-wizardry .flash-progress {
+    /* Progress bar color */
+    background-color: rgba(255, 153, 0, 0.15);
+}
+.flash-container .flash-message.flash-wizardry:before {
+    /* Left line color */
+    background-color: #ffcc00;
+}
+.flash-container .flash-message.flash-wizardry:after {
+    /* Icon color */
+    color: rgba(255, 179, 0, 0.5);
+    /* Icon from tme-fa-icons */
+    content: '\e83a';
+    /* Change this if you want to use font-awesome icons or something else */
+    font-family: "tme-fa-icons";
+}
+```
+    -
+```html
+<<flash "The wizard of SugarCube">>
+    <<flashType "wizardry">>
+<</flash>>
+```
+
+![flash styling example 2](../Resources/Gif/example4d.gif)
 
 ## Styling
 
