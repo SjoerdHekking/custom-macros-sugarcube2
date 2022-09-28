@@ -9,9 +9,11 @@ Download this repository and pick which macros you need. Each macro comes with a
 ## Macro sets
 
 1. [Flash](./Notification)
-    - Advanced notification system with 13 optional settings. 
+    - Advanced notification system with 14 optional settings. 
     - JavaScript method.
     - Insertion of your own custom notification types.
+    - Screen reader ready. (Thanks RynGM for the suggestion)
+    - Mobile ready.
     - Highly customizable!
 
 ![Flash example](./Resources/Gif/example4a.gif)

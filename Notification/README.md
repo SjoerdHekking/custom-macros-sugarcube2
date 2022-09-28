@@ -1,6 +1,6 @@
 # Flash
 
-Advanced notification system with 13 optional settings. 
+Advanced notification system with 14 optional settings. 
 
 ## Installation
 
@@ -23,7 +23,7 @@ The following example uses the default values of flash.
 
 ## Usage - Flash arguments
 
-1. 'Flash' has fourteen (yes 14) arguments which allow things to be customized for your desire. I recommend staying away from 7, and 10 to and including 14, unless you know what you're doing.
+1. 'Flash' has fifteen (yes 15) arguments which allow things to be customized for your desire. I recommend staying away from 7, and 10 to and including 14, unless you know what you're doing.
     - [Input text](#Text), there is no default, this must be user provided. (Argument 1)
     - [Type](#Type), default is `default`, (Argument 2)
     - [Progress](#Progress), default is `true` (Argument 3)
@@ -38,6 +38,7 @@ The following example uses the default values of flash.
     - [Visible Class](#VisibleClass), default is `is-visible`. (Argument 12)
     - [Progress Class](#ProgressClass), default is `flash-progress`. (Argument 13)
     - [Hidden Class](#HiddenClass), default is `is-hidden`. (Argument 14)
+    - [Transition](#Transition), default is `false`. (Argument 15)
     - [Styling example](#Styling), an example of styling of the `css` itself, this is not the recommended way of doing this.
 2. 'Flash' has a custom type insertion system, for if the default 7 options aren't enough.
     - [Inserting new type](#TypeInsert), this is completely custom, so no default.
@@ -64,6 +65,7 @@ The following example uses the default values of flash.
     <<classVisible Argument12>>
     <<classProgress Argument13>>
     <<classHidden Argument14>>
+    <<Transition Argument15>>
 <</flash>>
 ```
 
@@ -135,7 +137,7 @@ The following example uses the default values of flash.
 - `Argument7`: *(string)* flash container.
 
 1. 'flash' has a default container set to `.flash-container`.
-    - Only string are accepted.
+    - Only strings are accepted.
 
 **NOTE:** The element must exist before the macro is called.
 
@@ -159,8 +161,10 @@ The following example uses the default values of flash.
 
 - `Argument10`: *(string)* flash container class.
 
-1. 'flash' has a default flash container class set to `flash-container`.
+1. 'flash' has a default flash container class set to `.flash-container`.
     - Only string are accepted.
+    - Please place a `.` or `#` in the argument to imply whether the custom container is selected through an ID or Class.
+    - The container is automatically removed after usage. This is expected behaviour because the container should also be dynamically made right before the macro call. This is because the element **must** exist. I recommend pairing it with a widget to create the container, and right after call the macro. 
 
 **NOTE:** This breaks ALL existing `css` rules. Thus, the user must supply their own.
 
@@ -199,6 +203,14 @@ The following example uses the default values of flash.
     - Only string are accepted.
 
 **NOTE:** This breaks ALL existing `css` rules. Thus, the user must supply their own.
+
+## Transition
+
+- `Argument15`: *(boolean)* transition container removal.
+
+1. 'flash' has a default transition container removal set to `false`.
+    - Only booleans are accepted.
+    - If set to `true` flash removes its container upon passage transition. To explain it more simple: when a player clicks a link, the flash message stays until its timer runs out or until it's clicked. If this argument is set to `true`, the messages get removed when a player clicks a link.
 
 ## TypeInsert
 

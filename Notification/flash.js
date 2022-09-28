@@ -1,3 +1,5 @@
+// Flash macro by SjoerdHekking
+// FireFox progressbar bug fixed by Goctionni
 !function(e) {
 	function t(s) {
 		if(n[s]) return n[s].exports;
@@ -243,7 +245,7 @@
 			function e(t) {
 				var n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : e._CONSTANTS.TYPES.ERROR,
 					i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
-				s(this, e), n.constructor === Object && (i = n, n = e._CONSTANTS.TYPES.ERROR), this.$_element = null, this.setOptions(i), t instanceof Element ? (this.$_element = t, this._composeMessage()) : (this.message = t, this.type = n), this.$_container = document.querySelector(this.options.container) || null, this._c_timeout = null, this.$_progress = null, this._progress_value = 0, this._progress_offset = 0, this._progress_interval = null, this._createContainer(), this._createMessage()
+				s(this, e), n.constructor === Object && (i = n, n = e._CONSTANTS.TYPES.ERROR), this.$_element = null, this.setOptions(i), t instanceof Element ? (this.$_element = t, this._composeMessage()) : (this.message = t, this.type = n), this.$_container = document.querySelector(this.options.container) || null, this._c_timeout = null, this.$_progress = null, this._progress_value = 0, this._createContainer(), this._createMessage()
 			}
 			return i(e, null, [{
 				key: "_CONSTANTS",
@@ -306,7 +308,9 @@
 				key: "_createContainer",
 				value: function() {
 					null !== this.$_container && document.body.contains(this.$_container) || (this.$_container = document.createElement("div"), this.$_container.classList.add(this.options.classes.container), document.body.firstChild ? document.body.insertBefore(this.$_container, document.body.firstChild) : document.body.appendChild(this.$_container))
-                    
+
+                    this.$_container.setAttribute("aria-label", "Notification list"), this.$_container.tabIndex = 0
+
                     this._setLayout()
 				}
 			}, {
@@ -321,13 +325,13 @@
 				value: function() {
 					if(this.$_element) this.$_element.querySelector(".thumb") && this.$_element.classList.add("has-thumb");
 					else {
-						if(this.$_element = document.createElement("div"), this.$_element.classList.add(this.options.classes.flash, "flash-" + this.type), this.$_element.setAttribute("data-type", this.type), this.$_element.setAttribute("data-message", this.message), this.$_element.innerHTML = this.message, this.options.thumb) {
+						if(this.$_element = document.createElement("div"), this.$_element.classList.add(this.options.classes.flash, "flash-" + this.type), this.$_element.setAttribute("data-type", this.type), this.$_element.setAttribute("aria-label", this.message),this.$_element.setAttribute("data-message", this.message), this.$_element.innerHTML = this.message, this.options.thumb) {
 							var e = document.createElement("img");
 							e.classList.add("thumb"), e.src = this.options.thumb, this.$_element.classList.add("has-thumb"), this.$_element.appendChild(e)
 						}
 						this._append()
 					}
-					this._setTheme(), this._hasProgress() && this._progressBar(), this.$_element.dataset.timeout && (this.options.timeout = parseInt(this.$_element.dataset.timeout, 10)), this._behavior(), !0 === this._isInteractive() && this._bindEvents(), this.$_element.setAttribute("id","flash-id-" + genNewID())
+					this._setTheme(), this._hasProgress() && this._progressBar(), this.$_element.dataset.timeout && (this.options.timeout = parseInt(this.$_element.dataset.timeout, 10)), this._behavior(), !0 === this._isInteractive() && this._bindEvents(), this.$_element.setAttribute("id","flash-id-" + genNewID()), this.$_element.setAttribute("role", "alert"), this.$_element.tabIndex = 1
 				}
 			}, {
 				key: "_append",
@@ -360,8 +364,8 @@
 				value: function() {
 					var e = this;
                     e.$_element.remove();
-                    if ($('.flash-container').children().length === 0 ) {
-                        $('.flash-container').remove()
+                    if ($(e.options.container).children().length === 0 ) {
+                        $(e.options.container).remove()
                     }
 				}
 			}, {
@@ -431,25 +435,39 @@
 			}, {
 				key: "_progressBar",
 				value: function() {
-					this.$_progress = document.createElement("div"), this.$_progress.classList.add(this.options.classes.progress), this.$_element.appendChild(this.$_progress)
+					this.$_progress = document.createElement("div"), this.$_progress.classList.add(this.options.classes.progress), this.$_element.appendChild(this.$_progress), this.$_progress.setAttribute("role", "progressbar"), this.$_progress.setAttribute("aria-valuemin", 0), this.$_progress.setAttribute("aria-valuemax", 100)
 				}
 			}, {
-				key: "_startProgress",
-				value: function() {
-					var e = this;
-					this._hasProgress() && (this.$_progress || this._progressBar(), this._stopProgress(), this._progress_offset = 0, this.$_progress.classList.remove(this.options.classes.progress_hidden), this._progress_interval = window.setInterval(function() {
-						return e._setProgress()
-					}, 16))
-				}
-			}, {
-				key: "_setProgress",
-				value: function() {
-					this.$_progress.style.width = this._progress_value + "%", this._progress_value = (100 * this._progress_offset / this.options.timeout).toFixed(2), this._progress_offset += 16, this._progress_value >= 100 && this._stopProgress()
-				}
-			}, {
+                key: "_setProgress",
+                value: function() {
+                    const elapsed = Date.now() - this._progress_starttime;
+                    const pct = Math.min(1, elapsed / this.options.timeout);
+                    const width = (pct * 100).toFixed(2);
+                    this.$_progress.setAttribute("aria-valuenow", width);
+                    this.$_progress.style.width = width + "%";
+                    this._progress_value = width; 
+                    if (pct >= 1) {
+                      this._stopProgress();
+                    } else {
+                      requestAnimationFrame(this._setProgress.bind(this));
+                    }
+                }
+            }, {
+                key: "_startProgress",
+                value: function() {
+                    var e = this;
+                    if (this._hasProgress()) {
+                      if (!this.$_progress) this._progressBar();
+                      this._stopProgress();
+                      this._progress_starttime = Date.now();
+                      this.$_progress.classList.remove(this.options.classes.progress_hidden);
+                      e._setProgress();
+                   }
+                }
+            }, {
 				key: "_stopProgress",
 				value: function() {
-					this._hasProgress() && this.$_progress && (this.$_progress.classList.add("flash-is-hidden"), window.clearInterval(this._progress_interval), this._progress_interval = null, this._progress_value = 0)
+					this._hasProgress() && this.$_progress && (this.$_progress.classList.add("flash-is-hidden"), this._progress_value = 0)
 				}
 			}, {
 				key: "_setTheme",
@@ -511,7 +529,7 @@
 
 
 Macro.add("flash", {
-	tags: ["progress", "Progress", "interactive", "Interactive", "timeout", "Timeout", "delay", "Delay", "container", "Container", "theme", "Theme", "classContainer", "classcontainer", "classFlash", "classflash", "classVisible", "classvisible", "classProgress", "classprogress", "classHidden", "classhidden", "flashtype", "flashType", "layout", "Layout"],
+	tags: ["progress", "Progress", "interactive", "Interactive", "timeout", "Timeout", "delay", "Delay", "container", "Container", "theme", "Theme", "classContainer", "classcontainer", "classFlash", "classflash", "classVisible", "classvisible", "classProgress", "classprogress", "classHidden", "classhidden", "flashtype", "flashType", "layout", "Layout", "transition", "Transition"],
 	handler: function () {
         const typeArray = ["success", "warning", "error", "info", "bug", "disabled", "default"];
         const layoutArray = ["top-right", "middle-right", "bottom-right", "middle-bottom", "bottom-left", "middle-left", "top-left", "middle-top"];
@@ -623,6 +641,15 @@ Macro.add("flash", {
                     if (!(typeof pay.args[0] == "string"))
                         errorArray.push("Class must be a string.");
                     defaultOptions.classes.progress_hidden = pay.args[0];
+                break;
+                case "transition":
+                    if (!(typeof pay.args[0] == "boolean"))
+                        errorArray.push("Interactive must be true or false.");
+                    if (pay.args[0]) {
+                        $(document).one(':passagestart', function (ev) {
+                            $(defaultOptions.container).remove()
+                        });
+                    }
                 break;
             }
         }
