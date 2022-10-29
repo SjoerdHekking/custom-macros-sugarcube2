@@ -277,7 +277,14 @@ The following example uses the default values of flash.
 
 1. This is how to use JavaScript to create flash messages with the default parameters.
     - ```js
-      window.FlashMessage.default('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', {
+      window.FlashMessage.create(
+          /* Text to be displayed. */
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 
+          /* Type of message to display. The following strings are accepted: 
+           * "success", "warning", "error", "info", "bug", "disabled", "default" */
+          "success",
+          /* Other Settings */
+          {
           progress: true,
           interactive: true,
           timeout: 8000,
@@ -288,9 +295,36 @@ The following example uses the default values of flash.
           classes: {
               container: 'flash-container',
               flash: 'flash-message',
-              visible: 'is-visible',
+              visible: 'flash-is-visible',
               progress: 'flash-progress',
-              progress_hidden: 'is-hidden'
+              progress_hidden: 'flash-is-hidden'
           }
       });
       ```
+
+2. To quickly test in your SugarCube project, insert:
+    - ```html
+        <<button "JS Flash!">>
+            <<script>>
+                window.FlashMessage.create(
+                    'This example contributed by LeahPeach c:', 
+                    "success",
+                    {
+                    progress: true,
+                    interactive: true,
+                    timeout: 8000,
+                    appear_delay: 200,
+                    container: '.flash-container',
+                    theme: 'default',
+                    layout: 'top-right',
+                    classes: {
+                        container: 'flash-container',
+                        flash: 'flash-message',
+                        visible: 'flash-is-visible',
+                        progress: 'flash-progress',
+                        progress_hidden: 'flash-is-hidden'
+                    }
+                });
+            <</script>>
+        <</button>>
+        ```
