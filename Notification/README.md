@@ -1,6 +1,6 @@
 # Flash
 
-Advanced notification system with 14 optional settings. 
+Advanced notification system with 16 optional settings and 2 global settings.
 
 ## Installation
 
@@ -23,7 +23,7 @@ The following example uses the default values of flash.
 
 ## Usage - Flash arguments
 
-1. 'Flash' has fifteen (yes 15) arguments which allow things to be customized for your desire. I recommend staying away from 7, and 10 to and including 14, unless you know what you're doing.
+1. 'Flash' has sixteen (yes 16) arguments which allow things to be customized for your desire. I recommend staying away from 7, and 10 to and including 14, unless you know what you're doing.
     - [Input text](#Text), there is no default, this must be user provided. (Argument 1)
     - [Type](#Type), default is `default`, (Argument 2)
     - [Progress](#Progress), default is `true` (Argument 3)
@@ -39,13 +39,17 @@ The following example uses the default values of flash.
     - [Progress Class](#ProgressClass), default is `flash-progress`. (Argument 13)
     - [Hidden Class](#HiddenClass), default is `is-hidden`. (Argument 14)
     - [Transition](#Transition), default is `false`. (Argument 15)
+    - [Thumb](#Thumb), default is `empty`. (Argument 16)
     - [Styling example](#Styling), an example of styling of the `css` itself, this is not the recommended way of doing this.
-2. 'Flash' has a custom type insertion system, for if the default 7 options aren't enough.
-    - [Inserting new type](#TypeInsert), this is completely custom, so no default.
-    - [Using new Type](#Type), refer to Argument 2 for usage, because the newly inserted type can be used like the defaults now.
+2. 'Flash' Can accept custom types (before you had to insert a custom type, this is no longer the case).
+    - [Inserting new type](#TypeInsert), No longer supported, merged automatically with Argument 2.
+    - [Using new Type](#Type), refer to Argument 2 for usage.
     - [Important styling](#StylingType), if you want to have custom styling, please copy and edit the `css` found here. Take a look at the example.
 3. 'Flash' can also be called directly through javascript
     - [Javascript methods](#Javascript), here you can find a way to fully control and customize everything. **NOT** recommended for authors without knowledge of JavaScript.
+4. 'Flash' has two global settings, a maximum allowed flashes at the same time and a debug mode for console messages.
+    - [Limitation](#Limitation), here you can find how to limit the maximum amount of flashes at the same time.
+    - [Debug](#Debug), debugging messages in the console to check what is happening while flashes are generated.
 
 
 **Argument placement:**
@@ -66,6 +70,7 @@ The following example uses the default values of flash.
     <<classProgress Argument13>>
     <<classHidden Argument14>>
     <<Transition Argument15>>
+    <<Thumb Argument16>>
 <</flash>>
 ```
 
@@ -89,6 +94,7 @@ The following example uses the default values of flash.
 1. 'Flash' has no default, user must submit a string with text.
     - Only UTF-8 is accepted.
     - Must be user supplied.
+    - Flash accepts `$var` and math, for example, `$x + $y`.
 
 ## Type
 
@@ -156,6 +162,7 @@ The following example uses the default values of flash.
 1. 'flash' has a default layout set to `top-right`.
     - Only string are accepted.
     - The following strings are accepted: `top-right`, `middle-right`, `bottom-right`, `middle-bottom`, `bottom-left`, `middle-left`, `top-left`, `middle-top`.
+    - When a container is made, this can not be changed dynamically, wait for the container to be destroyed to change to a new layout.
 
 ## ContainerClass
 
@@ -212,12 +219,19 @@ The following example uses the default values of flash.
     - Only booleans are accepted.
     - If set to `true` flash removes its container upon passage transition. To explain it more simple: when a player clicks a link, the flash message stays until its timer runs out or until it's clicked. If this argument is set to `true`, the messages get removed when a player clicks a link.
 
+## Thumb
+
+- `Argument16`: *(string)* creates an image.
+
+1. 'flash' can create `<img src="argument16">` within the flash body.
+    - Only strings are accepted.
+    - Can be styled with the class `.flash-thumb`.
+    - Parent (the container) can be styled with the class `.flash-message-has-thumb`.
+    - ` [img[url]]` is not accepted (maybe some day).
+
 ## TypeInsert
 
-1. `StoryInit`: *(strings)*'s flash can receive custom types through the use of `StoryInit`. Below is an example of the type 'Wizardry'. Please edit 'Wizardry' with your own custom type(s).
-    - `<<run window.FlashMessage.addCustomVerbs('wizardry');>>` this command must be placed in `StoryInit`.
-    - `window.FlashMessage.addCustomVerbs('wizardry', 'example', 'custom', 'many');` this command accepts comma seperated strings.
-**NOTE:** Please put it in `StoryInit` and not somewhere else.
+1. `NO LONGER SUPPORTED`: custom types are now directly useable form argument 2.
 
 ## StylingType
 
@@ -277,14 +291,12 @@ The following example uses the default values of flash.
 
 1. This is how to use JavaScript to create flash messages with the default parameters.
     - ```js
-      window.FlashMessage.create(
+      new FlashMessageManager(
           /* Text to be displayed. */
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 
-          /* Type of message to display. The following strings are accepted: 
-           * "success", "warning", "error", "info", "bug", "disabled", "default" */
-          "success",
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           /* Other Settings */
           {
+          type: bug,
           progress: true,
           interactive: true,
           timeout: 8000,
@@ -306,10 +318,10 @@ The following example uses the default values of flash.
     - ```html
         <<button "JS Flash!">>
             <<script>>
-                window.FlashMessage.create(
-                    'This example contributed by LeahPeach c:', 
-                    "success",
+                new FlashMessageManager(
+                    'This example contributed by LeahPeach c:',
                     {
+                    type: "bug"
                     progress: true,
                     interactive: true,
                     timeout: 8000,
@@ -328,3 +340,13 @@ The following example uses the default values of flash.
             <</script>>
         <</button>>
         ```
+
+## Limitation
+
+1. `StoryInit`: *(integer)* to set a limit on the messages to display. Flash will queue messages when the limit has been reached. Place the following in `StoryInit`:
+    - `FlashMessageManager.DEFAULT_OPTIONS.limit = x` -> `x` is the maximum, the default is `0`, which means unlimited.
+
+## Debug
+
+1. `StoryInit`: *(boolean)* to activate debugging mode, so you can see what is happening. Place the following in `StoryInit`:
+    - `FlashMessageManager.DEFAULT_OPTIONS.debug = x` -> `x` is either `true` to display them in console, or `false` (default) to not generate them.
