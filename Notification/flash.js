@@ -180,6 +180,7 @@ class FlashMessage {
 
 		// Accessibility enforcing
 		this.$_container.setAttribute("aria-label", "Notification list");
+		this.$_container.setAttribute("aria-live", "polite");
 		this.$_container.tabIndex = 0;
 
 		// prepare layout
@@ -227,7 +228,7 @@ class FlashMessage {
 		}
 	  
 		// accessibility add
-		this.$_element.setAttribute("role", "alert");
+		this.$_element.setAttribute("aria-live", "polite");
 		this.$_element.setAttribute("aria-label", this.message);
 		this.$_element.tabIndex = 1;
 

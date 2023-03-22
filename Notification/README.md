@@ -102,7 +102,8 @@ The following example uses the default values of flash.
 
 1. 'flash' has a default flash type set to `default`.
     - Only string are accepted.
-    - The following strings are accepted: `success`, `warning`, `error`, `info`, `bug`, `disabled`, `default`.
+    - The following default strings are accepted: `success`, `warning`, `error`, `info`, `bug`, `disabled`, `default`.
+    - If inserting a custom type, for example `wizardry` be sure to check [Important styling](#StylingType).
 
 ## Progress
 
@@ -231,7 +232,7 @@ The following example uses the default values of flash.
 
 ## TypeInsert
 
-1. `NO LONGER SUPPORTED`: custom types are now directly useable form argument 2.
+1. `NO LONGER SUPPORTED`: custom types are now directly useable from argument 2.
 
 ## StylingType
 
@@ -344,9 +345,11 @@ The following example uses the default values of flash.
 ## Limitation
 
 1. `StoryInit`: *(integer)* to set a limit on the messages to display. Flash will queue messages when the limit has been reached. Place the following in `StoryInit`:
-    - `FlashMessageManager.DEFAULT_OPTIONS.limit = x` -> `x` is the maximum, the default is `0`, which means unlimited.
+    - `<<run FlashMessageManager.DEFAULT_OPTIONS.limit = x>>` -> `x` is the maximum, the `default` is `0`, which means unlimited.
+    - Theoretically this setting can be changed everywhere within a story, but, if doing this, there is a high chance of weirdness.
 
 ## Debug
 
 1. `StoryInit`: *(boolean)* to activate debugging mode, so you can see what is happening. Place the following in `StoryInit`:
-    - `FlashMessageManager.DEFAULT_OPTIONS.debug = x` -> `x` is either `true` to display them in console, or `false` (default) to not generate them.
+    - `<<run FlashMessageManager.DEFAULT_OPTIONS.debug = x>>` -> `x` is either `true` to display them in console, or `false` (default) to not generate them.
+    - Theoretically this setting can be changed everywhere within a story, but, if doing this, there is a high chance of weirdness.

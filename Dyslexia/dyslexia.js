@@ -4,160 +4,113 @@ Macro.add('dyslexia', {
 		// Dyslexia by SjoerdHekking
 		'use strict';
 
-		var out = $(`<span class="macro-mess-up-words" />`)
+		let out = $(`<span class="macro-mess-up-words" />`)
         	.wiki(this.payload[0].contents)
           	.appendTo(this.output);
 
 		// returns texts
-		var getTextNodesIn = function(el) {
+		let getTextNodesIn = function(el) {
 		    return $(el).find(":not(iframe,script)").addBack().contents().filter(function() {
 		        return this.nodeType === 3;
 		    });
 		};
 
 		// only allow scanning within these tags
-		var textNodes = getTextNodesIn(out);
+		let textNodes = getTextNodesIn(out);
 
-		var errorArray = []; // Empty error array to address multiple problems
+		let errorArray = [];
 
-		var storeArg = this.args[0]; // Store args 1 for use outside of function
-		var storeArg2 = this.args[1]; // Store args 2 for use outside of function
-		var storeArg3 = this.args[2]; // Store args 3 for use outside of function
-
-		var defaultChance = 10; // default time for shuffling chance in percentage
-		var defaultSize = 3; // default size for length of words
-		var defaultSpeed = 50; // default delay for dynamic changes
+		let storeArg = this.args[0] || 10;
+		let storeArg2 = this.args[1] || 3;
+		let storeArg3 = this.args[2] || 50;
 
 		if (storeArg) {
-			if (typeof storeArg !== 'number') {
-				storeArg = Number(storeArg);
+			storeArg = parseInt(storeArg);
+			if (isNaN(storeArg) || storeArg < 0 || storeArg > 100) {
+				errorArray.push("Check first argument. Invalid value.");
 			}
-			if (Number.isNaN(storeArg)) {
-				storeArg = defaultChance;
-				errorArray.push("Check first argument. The dyslexia macro used the default.");
-			}
-			if (storeArg < 0) {
-				storeArg = defaultChance;
-				errorArray.push("Check first argument. Negative numbers are not allowed.");
-			}
-            if (storeArg > 100) {
-				storeArg = defaultChance;
-				errorArray.push("Check first argument. Numbers higher than 100 are not allowed.");
-			}
-		} else {
-			storeArg = defaultChance;
-		}
-
+		} 
 		if (storeArg2) {
-			if (typeof storeArg2 !== 'number') {
-				storeArg2 = Number(storeArg2);
+			storeArg2 = parseInt(storeArg2);
+			if (isNaN(storeArg2) || storeArg2 < 2) {
+				errorArray.push("Check second argument. Invalid value.");
 			}
-			if (Number.isNaN(storeArg2)) {
-				storeArg2 = defaultSize;
-				errorArray.push("Check second argument. The dyslexia macro used the default.");
-			}
-			if (storeArg2 < 2) {
-				storeArg2 = defaultSize;
-				errorArray.push("Check second argument. Minimum word size is 2.");
-			}
-		} else {
-			storeArg2 = defaultSize;
-		}
-
+		} 
 		if (storeArg3) {
-			if (typeof storeArg3 !== 'number') {
-				storeArg3 = Number(storeArg3);
+			storeArg3 = parseInt(storeArg3);
+			if (isNaN(storeArg3) || storeArg3 < 50) {
+				errorArray.push("Check third argument. Invalid value.");
 			}
-			if (Number.isNaN(storeArg3)) {
-				storeArg3 = defaultSpeed;
-				errorArray.push("Check third argument. The dyslexia macro used the default.");
-			}
-			if (storeArg3 < 50) {
-				storeArg3 = defaultSize;
-				errorArray.push("Check third argument. Minimum delay is 50.");
-			}
-		} else {
-			storeArg3 = defaultSpeed;
-		}
+		} 
 
 		if (errorArray.length > 0) {
-		  var joinedArray = errorArray.join('\n')
-		  return this.error(joinedArray);
+			let joinedArray = errorArray.join('\n')
+			return this.error(joinedArray);
 		}
 
-		function isLetter(char) {
-			return /^[\d]$/.test(char);
+		let wordsInTextNodes = [];
+		for (let i = 0; i < textNodes.length; i++) {
+			const node = textNodes[i];
+			const wordsInNode = node.nodeValue.match(/\w+/g) || [];
+		
+			wordsInTextNodes[i] = wordsInNode.map((word, index) => ({
+				length: word.length,
+				position: node.nodeValue.indexOf(word, index === 0 ? 0 : wordsInNode[index - 1].length + wordsInNode[index - 1].index)
+			}));
 		}
 
-		var wordsInTextNodes = [];
-		for (var i = 0; i < textNodes.length; i++) {
-			var node = textNodes[i];
-
-			var words = []
-
-			var re = /\w+/g;
-			var match;
-			while ((match = re.exec(node.nodeValue)) != null) {
-
-				var word = match[0];
-				var position = match.index;
-
-				words.push({
-					length: word.length,
-					position: position
-				});
-			}
-
-			wordsInTextNodes[i] = words;
-		};
-
+		/**
+		 * Messes up the words in text nodes according to the probability and word length delay set in the dyslexia macro.
+		 */
 		function messUpWords () {
-			for (var i = 0; i < textNodes.length; i++) {
+			for (let i = 0; i < textNodes.length; i++) {
+				let node = textNodes[i];
 
-				var node = textNodes[i];
-
-				for (var j = 0; j < wordsInTextNodes[i].length; j++) {
+				for (let j = 0; j < wordsInTextNodes[i].length; j++) {
 					
 					if (Math.random() < (100 - storeArg) / 100 ) {
 						continue;
 					}
 
-					var wordMeta = wordsInTextNodes[i][j];
-					var word = node.nodeValue.slice(wordMeta.position, wordMeta.position + wordMeta.length);
-					var before = node.nodeValue.slice(0, wordMeta.position);
-					var after  = node.nodeValue.slice(wordMeta.position + wordMeta.length);
-
-					node.nodeValue = before + messUpWord(word) + after;
+					let wordMeta = wordsInTextNodes[i][j];
+					let word = node.nodeValue.slice(wordMeta.position, wordMeta.position + wordMeta.length);
+					node.nodeValue = node.nodeValue.slice(0, wordMeta.position) + messUpWord(word) + node.nodeValue.slice(wordMeta.position + wordMeta.length);
 				};
 			};
 		}
 
+		/**
+		 * Messes up a single word by swapping random letters in the "messy part" of the word (i.e. all letters except the first and last).
+		 * @param {string} word - The word to mess up.
+		 * @returns {string} The messed up word, or the original word if its length is less than the minimum word length specified in the dyslexia macro.
+		 */
 		function messUpWord (word) {
-			if (word.length < storeArg2) {
-				return word;
-			}
-			return word[0] + messUpMessyPart(word.slice(1, -1)) + word[word.length - 1];
+			if (word.length < storeArg2) return word;
+			const middle = messUpMessyPart(word.slice(1, -1));
+  			return `${word[0]}${middle}${word.slice(-1)}`;
 		}
 
+		/**
+		 * Messes up the "messy part" of a word by swapping two random letters.
+		 * @param {string} messyPart - The "messy part" of a word to mess up.
+		 * @returns {string} The messed up "messy part", or the original "messy part" if its length is less than 2.
+		 */
 		function messUpMessyPart (messyPart) {
-			if (messyPart.length < 2) {
+			if (messyPart.length < 2) return messyPart;
 
-				return messyPart;
-			}
-			var a, b;
+			let a, b;
 			while (!(a < b)) {
 				a = getRandomInt(0, messyPart.length - 1);
 				b = getRandomInt(0, messyPart.length - 1);
 			}
 
-			return messyPart.slice(0, a) + messyPart[b] + messyPart.slice(a+1, b) + messyPart[a] + messyPart.slice(b+1);
+			function getRandomInt(min, max) {
+				return Math.floor(Math.random() * (max - min + 1) + min);
+			}
+
+			return `${messyPart.slice(0, a)}${messyPart[b]}${messyPart.slice(a+1, b)}${messyPart[a]}${messyPart.slice(b+1)}`;
 		}
 
-		// random random value between given min and max
-		function getRandomInt(min, max) {
-			return Math.floor(Math.random() * (max - min + 1) + min);
-		}
-		// set interval for dynamic DOM changes
 		setInterval(messUpWords, storeArg3);
 	}
 });

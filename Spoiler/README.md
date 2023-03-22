@@ -57,8 +57,8 @@ Or you could hide a <<spoiler 6 1 "Dare to press me">>secret<</spoiler>> word.
 
 1. 'Spoiler' has a default initial blur set to `4px`.
     - Only integers are accepted.
-    - Minimum will be `1px` or an error will be thrown.
-    - Maximum will be `10px` or an error will be thrown.
+    - Minimum will be `1px` or the setting will conform to the closests safe number.
+    - Maximum will be `10px` or the setting will conform to the closests safe number.
 
 **NOTE:** Blurs with a greater value then 10 will be impossible to use.
 
@@ -68,8 +68,8 @@ Or you could hide a <<spoiler 6 1 "Dare to press me">>secret<</spoiler>> word.
 
 1. 'Spoiler' has a default hover over blur set to `2px`.
     - Only integers are accepted.
-    - Minimum will be `1px` or an error will be thrown.
-    - Maximum will be `10px` or an error will be thrown.
+    - Minimum will be `1px` or the setting will conform to the closests safe number.
+    - Maximum will be `10px` or the setting will conform to the closests safe number.
 
 **NOTE:** Blurs with a greater value then 10 will be impossible to use.
 
