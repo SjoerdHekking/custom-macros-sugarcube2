@@ -134,6 +134,7 @@ class FlashMessage {
 
 	constructor(message, options, id) {
 		this.$_element = null;
+		this.$_message = null;
 		this.interval = null;
 		this.progress_bar = null;
 		this.options = {};
@@ -195,7 +196,12 @@ class FlashMessage {
 		this.$_element = document.createElement("div");
 		this.$_element.classList.add(this.options.classes.flash, "flash-" + this.options.type);
 		this.$_element.setAttribute("data-reference", this.$_id);
-		this.$_element.innerHTML = this.message;
+		
+		// create message
+		this.$_message = document.createElement("span");
+		this.$_message.classList.add("flash-text");
+		this.$_message.innerHTML = this.message;
+		this.$_element.appendChild(this.$_message);
 	
 		// if a custom image is needed it can be added
 		if (this.options.thumb) {

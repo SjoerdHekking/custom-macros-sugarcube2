@@ -58,6 +58,9 @@
     line-height: 1.4;
     cursor: pointer;
 }
+.flash-container .flash-message .flash-text {
+    font-size: 1em;
+}
 .flash-container .flash-not-interactive {
     cursor: default;
 }
