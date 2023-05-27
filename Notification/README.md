@@ -112,6 +112,7 @@ The following example uses the default values of flash.
 1. 'flash' has a default progress set to `true`.
     - Only booleans are accepted.
     - Setting this to `false` will cause the notification to permanently stay unless click if `interactive = true`.
+    - If combined with [a global limitation](#Limitation), please note that mixing `true` and `false` flashes could cause queued flashes to never display, thus bugging out. 
 
 ## Interactive
 

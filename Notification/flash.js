@@ -216,10 +216,7 @@ class FlashMessage {
 		this.$_element.classList.add(`${this.options.theme}-theme`);
 		
 		// create progress bar
-		if (this.hasProgress()) {
-		  	this.progressBar();
-		}
-		
+
 		// create start of the progress
         window.setTimeout(
             () => { 
@@ -247,7 +244,9 @@ class FlashMessage {
 	 */
 	run() {
 		this.startProgress()
-        this._c_timeout = window.setTimeout(() => this.close(), this.options.timeout)
+		if (this.hasProgress()) {
+			this._c_timeout = window.setTimeout(() => this.close(), this.options.timeout)
+	  	} 
 	}
 
 	/**
