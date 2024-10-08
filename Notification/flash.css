@@ -1,3 +1,13 @@
+:root {
+    --icon-font-family: 'tme-fa-icons';
+    --success-icon-content: '\e803'; /* Default for tme-fa-icons */
+    --warning-icon-content: '\e80d';
+    --error-icon-content: '\e80c';
+    --info-icon-content: '\e80a';
+    --bug-icon-content: '\e838';
+    --disabled-icon-content: '\e80f';
+}
+
 /* FLASH JS THEME VARIABLES */
 .flash-container {
     z-index: 1000;
@@ -98,7 +108,7 @@
 .flash-container .flash-message:after {
     position: absolute;
     content: '';
-    font-family: 'tme-fa-icons';
+    font-family: var(--icon-font-family);
     top: 5px;
     right: 8px;
     text-align: center;
@@ -118,7 +128,7 @@
 }
 .flash-container .flash-message.flash-success:after {
     color: rgba(76, 175, 80, 0.5);
-    content: '\e803';
+    content: var(--success-icon-content);
 }
 /* WARNING */
 .flash-container .flash-message.flash-warning .flash-progress {
@@ -129,7 +139,7 @@
 }
 .flash-container .flash-message.flash-warning:after {
     color: rgba(255, 133, 27, 0.5);
-    content: '\e80d';
+    content: var(--warning-icon-content);
 }
 /* ERROR */
 .flash-container .flash-message.flash-error .flash-progress {
@@ -140,7 +150,7 @@
 }
 .flash-container .flash-message.flash-error:after {
     color: rgba(255, 65, 54, 0.5);
-    content: '\e80c';
+    content: var(--error-icon-content);
 }
 /* INFO */
 .flash-container .flash-message.flash-info .flash-progress {
@@ -151,7 +161,7 @@
 }
 .flash-container .flash-message.flash-info:after {
     color: rgba(0, 116, 217, 0.5);
-    content: '\e80a';
+    content: var(--info-icon-content);
 }
 /* BUG */ 
 .flash-container .flash-message.flash-bug .flash-progress {
@@ -162,7 +172,7 @@
 }
 .flash-container .flash-message.flash-bug:after {
     color: rgba(138, 43, 226, 0.5);
-    content: '\e838';
+    content: var(--bug-icon-content);
 }
 /* DISABLED */
 .flash-container .flash-message.flash-disabled .flash-progress {
@@ -173,8 +183,7 @@
 }
 .flash-container .flash-message.flash-disabled:after {
     color: rgba(170, 170, 170, 0.5);
-    content: '\e80f';
-    font-family: "tme-fa-icons";
+    content: var(--disabled-icon-content);
 }
 /* DEFAULT */ 
 .flash-container .flash-message.flash-default {
