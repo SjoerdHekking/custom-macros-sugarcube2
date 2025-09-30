@@ -4,6 +4,8 @@ Advanced notification system with 16 optional settings and 2 global settings.
 
 ## Installation
 
+Please check your SugarCube version and use the appropriate folder for the next steps!
+
 If using the Twine desktop/web app, copy contents of `flash.js` to the `Story JavaScript` section, and copy contents of `flash.css` to the `Story Stylesheet` section.
 
 If using a compiler like Tweego, drop `flash.js` and `flash.css` to your source folder.
@@ -240,7 +242,7 @@ The following example uses the default values of flash.
 1. `Story Stylesheet`: *(strings)*'s to make sure your newly added type actually does something we **must** give it custom styling. Please edit 'Wizardry' with your own custom name(s).
 
     - ```css
-      /* Place the css below in your story stylesheet */
+      /* Place the css below in your story stylesheet PLEASE PICK THE CORRECT VERSION FOR THE CONTENT!*/
       .flash-container .flash-message.flash-wizardry .flash-progress {
           /* Progress bar color */
           background-color: rgba(255, 153, 0, 0.15);
@@ -252,8 +254,10 @@ The following example uses the default values of flash.
       .flash-container .flash-message.flash-wizardry:after {
           /* Icon color */
           color: rgba(255, 179, 0, 0.5);
-          /* Icon from tme-fa-icons */
+          /* Icon from tme-fa-icons VERSION 2.36 */
           content: '\e83a';
+          /* Icon from tme-fa-icons VERSION 2.37 */
+          content: '\f0d0';
           /* Change this if you want to use font-awesome icons or something else */
           font-family: "tme-fa-icons";
       }

@@ -1,33 +1,5 @@
 // FlashMessage macro by SjoerdHekking
 // FireFox progressbar bug fixed by Goctionni
-setup.isFontAvailable = function(fontName, testChar) {
-    const testSize = '72px';
-    const span = document.createElement('span');
-    span.style.fontSize = testSize;
-    span.style.position = 'absolute';
-    span.style.left = '-9999px';
-    span.textContent = testChar || 'a';
-    span.style.fontFamily = 'monospace';
-    document.body.appendChild(span);
-    const baselineWidth = span.offsetWidth;
-    span.style.fontFamily = `${fontName}, monospace`;
-    const testFontWidth = span.offsetWidth;
-    document.body.removeChild(span);
-
-    return testFontWidth !== baselineWidth;
-};
-$(document).one(':passageend', function (ev) {
-	if (setup.isFontAvailable('sc-icons', '\ue803')) {
-		document.documentElement.style.setProperty('--icon-font-family', 'sc-icons');
-		document.documentElement.style.setProperty('--success-icon-content', '"\\f00c"');
-		document.documentElement.style.setProperty('--warning-icon-content', '"\\f071"');
-		document.documentElement.style.setProperty('--error-icon-content', '"\\f06a"');
-		document.documentElement.style.setProperty('--info-icon-content', '"\\f05a"');
-		document.documentElement.style.setProperty('--bug-icon-content', '"\\f188"');
-		document.documentElement.style.setProperty('--disabled-icon-content', '"\\f09c"');
-	}
-});
-
 class FlashMessageManager {
 	static DEFAULT_OPTIONS = {
 	  	limit: 0,

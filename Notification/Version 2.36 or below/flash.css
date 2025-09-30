@@ -1,6 +1,5 @@
 :root {
-    --icon-font-family: 'tme-fa-icons';
-    --success-icon-content: '\e803'; /* Default for tme-fa-icons */
+    --success-icon-content: '\e803';
     --warning-icon-content: '\e80d';
     --error-icon-content: '\e80c';
     --info-icon-content: '\e80a';
@@ -108,7 +107,7 @@
 .flash-container .flash-message:after {
     position: absolute;
     content: '';
-    font-family: var(--icon-font-family);
+    font-family: 'tme-fa-icons';
     top: 5px;
     right: 8px;
     text-align: center;
